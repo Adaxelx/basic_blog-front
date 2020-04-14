@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext } from 'react';
 import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { defaultTheme } from 'styles/themes';
+import { defaultTheme, darkTheme } from 'styles/themes';
 
 const ThemeContext = createContext(defaultTheme);
 
@@ -12,6 +12,8 @@ const ThemeProvider = ({ children }) => {
   const [currentTheme, setCurrentTheme] = useState(defaultTheme);
   const changeTheme = (theme) => {
     switch (theme) {
+      case 'DARK':
+        return setCurrentTheme(darkTheme);
       default:
         return setCurrentTheme(defaultTheme);
     }
@@ -24,7 +26,7 @@ const ThemeProvider = ({ children }) => {
 };
 
 ThemeProvider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 export const useThemeContext = () => useContext(ThemeContext);

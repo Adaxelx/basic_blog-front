@@ -5,9 +5,10 @@ import routes from 'constants/routes';
 const Router = () => {
   return (
     <Switch>
-      {routes.map((data) => (
-        <Route {...data} />
-      ))}
+      {routes.map((data) => {
+        console.log(data);
+        return <Route {...data} />;
+      })}
     </Switch>
   );
 };

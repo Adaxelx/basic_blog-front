@@ -20,6 +20,14 @@
       {
         "extensions": [".js", ".jsx"]
       }
+    ],
+    "react/jsx-props-no-spreading": [
+      1,
+      {
+        "html": "enforce",
+        "custom": "ignore",
+        "explicitSpread": "enforce"
+      }
     ]
   },
   "settings": {
