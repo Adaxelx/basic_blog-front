@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle`
         color: ${({ theme }) => theme.colors.text};
         background-color: ${({ theme }) => theme.colors.body};
         font-family: 'Poppins', sans-serif;
-        overflow-x: hidden;
     }
     * {
         box-sizing: border-box;
