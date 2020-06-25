@@ -1,6 +1,6 @@
 import React from 'react';
 import FullScreen from 'containers/FullScreen';
 
-const Dashboard = () => <FullScreen />;
+const Admin = () => <FullScreen />;
 
-export default Dashboard;
+export default Admin;
