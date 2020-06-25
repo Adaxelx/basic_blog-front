@@ -1,7 +1,10 @@
 import Dashboard from 'views/Dashboard';
 
-const paths = {
+export const paths = {
   DASHBOARD: '/',
+  NEWS: '/news',
+  QUIZ: '/quiz',
+  ADMIN: '/admin',
 };
 
 export default [
