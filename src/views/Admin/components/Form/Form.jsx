@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
 import { UserContext } from 'context/UserContext';
 
 const StyledForm = styled.form`
@@ -25,12 +24,13 @@ const StyledButton = styled.button`
   align-self: flex-end;
 `;
 
-const loginUser = async (data) => {
-  const url = 'http://localhost:8000/login';
+const sendPost = async (data, token) => {
+  const url = 'http://localhost:8000/admin/news/add/';
   const headers = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
+    Authentication: token,
   };
   const response = await fetch(url, headers);
   if (response.status === 200) {
@@ -40,18 +40,18 @@ const loginUser = async (data) => {
 };
 
 const Form = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const history = useHistory();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [message, setMessage] = useState('');
+
   const user = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let res;
     try {
-      res = await loginUser({ login, password });
-      user.setToken(res.token);
-      history.push('/admin');
+      res = await sendPost({ title, content }, user.token);
+      setMessage(res.message);
     } catch (err) {
       console.log(err);
     }
@@ -60,17 +60,14 @@ const Form = () => {
   return (
     <StyledForm onSubmit={(e) => handleSubmit(e)}>
       <StyledFormGroup>
-        <StyledLabel>Login</StyledLabel>
-        <StyledInput value={login} onChange={(e) => setLogin(e.target.value)} />
+        <StyledLabel>Tytuł</StyledLabel>
+        <StyledInput value={title} onChange={(e) => setTitle(e.target.value)} />
       </StyledFormGroup>
       <StyledFormGroup>
-        <StyledLabel>Hasło</StyledLabel>
-        <StyledInput
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <StyledLabel>Kontent</StyledLabel>
+        <StyledInput type="password" value={content} onChange={(e) => setContent(e.target.value)} />
       </StyledFormGroup>
+      {message ? <p>{message}</p> : null}
       <StyledButton type="submit">Zaloguj</StyledButton>
     </StyledForm>
   );
