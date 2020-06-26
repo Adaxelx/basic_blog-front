@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { UserContext } from 'context/UserContext';
 
@@ -28,9 +28,12 @@ const sendPost = async (data, token) => {
   const url = 'http://localhost:8000/admin/news/add/';
   const headers = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Origin: null,
+      Authorization: `Token ${token}`,
+    },
     body: JSON.stringify(data),
-    Authentication: token,
   };
   const response = await fetch(url, headers);
   if (response.status === 200) {
@@ -52,10 +55,14 @@ const Form = () => {
     try {
       res = await sendPost({ title, content }, user.token);
       setMessage(res.message);
+      setTitle('');
+      setContent('');
     } catch (err) {
       console.log(err);
     }
   };
+
+  // brak walidacji
 
   return (
     <StyledForm onSubmit={(e) => handleSubmit(e)}>
@@ -65,10 +72,10 @@ const Form = () => {
       </StyledFormGroup>
       <StyledFormGroup>
         <StyledLabel>Kontent</StyledLabel>
-        <StyledInput type="password" value={content} onChange={(e) => setContent(e.target.value)} />
+        <StyledInput value={content} onChange={(e) => setContent(e.target.value)} />
       </StyledFormGroup>
       {message ? <p>{message}</p> : null}
-      <StyledButton type="submit">Zaloguj</StyledButton>
+      <StyledButton type="submit">Dodaj</StyledButton>
     </StyledForm>
   );
 };
