@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import { UserContext } from 'context/UserContext';
+import path from 'constants/config';
 
 const StyledForm = styled.form`
   display: flex;
@@ -25,7 +26,7 @@ const StyledButton = styled.button`
 `;
 
 const sendPost = async (data, token) => {
-  const url = 'http://localhost:8000/admin/news/add/';
+  const url = `${path}admin/news/add/`;
   const headers = {
     method: 'POST',
     headers: {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FullScreen from 'containers/FullScreen';
 import styled from 'styled-components';
+import path from 'constants/config';
 import Post from './components/Post';
 
 const StyledTitle = styled.h1``;
@@ -20,7 +21,7 @@ const StyledInput = styled.input``;
 const StyledButton = styled.button``;
 
 const fetchPosts = async (text) => {
-  const url = `http://localhost:8000/news${text ? `/${text}` : ''}`;
+  const url = `${path}news${text ? `/${text}` : ''}`;
   const headers = {
     method: 'GET',
     headers: {

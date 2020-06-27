@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { UserContext } from 'context/UserContext';
+import path from 'constants/config';
 
 const StyledForm = styled.form`
   display: flex;
@@ -26,7 +27,7 @@ const StyledButton = styled.button`
 `;
 
 const loginUser = async (data) => {
-  const url = 'http://localhost:8000/login';
+  const url = `${path}login`;
   const headers = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

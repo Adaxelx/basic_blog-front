@@ -2,10 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import FullScreen from 'containers/FullScreen';
 import { UserContext } from 'context/UserContext';
 import Post from 'views/News/components/Post';
+import path from 'constants/config';
 import Form from './components/Form';
 
 const fetchPosts = async (token) => {
-  const url = 'http://localhost:8000/admin/news';
+  const url = `${path}admin/news`;
   const headers = {
     method: 'GET',
     headers: {
@@ -29,7 +30,6 @@ const Admin = () => {
     const getPosts = async () => {
       try {
         const res = await fetchPosts(user.token);
-        console.log(res);
         setPosts(res.data);
       } catch (e) {}
     };

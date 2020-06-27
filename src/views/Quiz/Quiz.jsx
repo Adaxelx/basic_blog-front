@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import FullScreen from 'containers/FullScreen';
 import styled from 'styled-components';
 import { UserContext } from 'context/UserContext';
+import path from 'constants/config';
 
 const StyledTitle = styled.h1``;
 
@@ -19,7 +20,7 @@ const StyledInput = styled.input``;
 const StyledButton = styled.button``;
 
 const fetchQuiz = async () => {
-  const url = `http://localhost:8000/quiz`;
+  const url = `${path}quiz`;
   const headers = {
     method: 'GET',
     headers: {
@@ -36,7 +37,7 @@ const fetchQuiz = async () => {
 };
 
 const sendAnswer = async (answer, id) => {
-  const url = `http://localhost:8000/quiz/${answer}/${id}`;
+  const url = `${path}${answer}/${id}`;
   const headers = {
     method: 'POST',
     headers: {

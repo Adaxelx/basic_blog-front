@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { UserContext } from 'context/UserContext';
+import path from 'constants/config';
 
 const StyledPost = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const StyledContent = styled.p``;
 const StyledDate = styled.small``;
 
 const deletePosts = async (token, id) => {
-  const url = `http://localhost:8000/admin/news/delete/${id}/`;
+  const url = `${path}admin/news/delete/${id}/`;
   const headers = {
     method: 'DELETE',
     headers: {
@@ -27,7 +28,6 @@ const deletePosts = async (token, id) => {
     },
   };
   const response = await fetch(url, headers);
-  console.log(response);
   if (response.status === 200) {
     return response.json();
   }
