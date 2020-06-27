@@ -49,7 +49,7 @@ const Post = ({ title, content, date, id, splicePost }) => {
       <StyledTitle>{title}</StyledTitle>
       <StyledDate>{date}</StyledDate>
       <StyledContent>{content}</StyledContent>
-      {user.token ? (
+      {user.token && id ? (
         <button type="button" onClick={(e) => deletePost(e, id)}>
           X
         </button>
