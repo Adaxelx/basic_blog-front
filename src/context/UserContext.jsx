@@ -10,14 +10,22 @@ export const UserContext = createContext({
 
 const UserProvider = ({ children }) => {
   const [token, setToken] = useState(cookies.get('token'));
-
+  const [vote, setVote] = useState(cookies.get('vote'));
   const user = {
     token,
+    vote,
     setToken: (newToken) => {
       cookies.set('token', newToken, {
         path: '/',
       });
       setToken(newToken);
+    },
+    setVote: () => {
+      console.log('xd');
+      cookies.set('vote', 1, {
+        path: '/',
+      });
+      setVote(1);
     },
   };
 
