@@ -37,7 +37,7 @@ const fetchQuiz = async () => {
 };
 
 const sendAnswer = async (answer, id) => {
-  const url = `${path}${answer}/${id}`;
+  const url = `${path}quiz/${answer}/${id}`;
   const headers = {
     method: 'POST',
     headers: {
